@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import {Comments, Posts, SingleUser, Users} from "./components";
+import {useState} from "react";
+import css from './App.css'
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [singleUser, setSingleUser] = useState();
+    const [singlePost, setSinglePost] = useState();
+    const [singleComment, setSingleComment] = useState();
+
+    return (
+        <div>
+            <div className={'top-1'}>
+
+                <Users getUser={setSingleUser}/>
+                <hr/>
+                {singleUser && <SingleUser user={singleUser} setSinglePost={setSinglePost}/>}
+            </div>
+            <hr/>
+            <div className={'top-1'}>
+                {singlePost && <Posts getPost={singlePost} setSingleComment={setSingleComment}/>}
+                <hr/>
+                {singleComment && <Comments getComment={singleComment}/>}
+
+            </div>
+        </div>
+    );
 }
 
 export default App;
